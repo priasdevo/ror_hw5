@@ -1,0 +1,8 @@
+<h1>Home</h1>
+<p>How many subject ??</p>
+<%= form_with url: '/main/test', method: 'post', data: {turbo: false} do |form| %>
+  <%= form.label :query, "No. Subject:" %>
+  <%= form.select :subjectno, ((1..10).map {|i| [i,i] } ) %>
+
+  <%= form.submit "Submit" %>
+<% end %>

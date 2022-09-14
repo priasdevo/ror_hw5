@@ -1,0 +1,15 @@
+<h1>Score#list</h1>
+<p>Find me in app/views/score/list.html.erb</p>
+
+
+
+	<% Subject.all.each do |n|%>
+
+		<%= form_with url: '/score/relay', method: 'post', data: {turbo: false} do |form| %>
+			<%= "You got #{n.score} in #{n.subject_name} Subject               "%>
+			<%= form.hidden_field :index,value:n.id%>
+			<%= form.submit "Edit"%>
+			<%= form.submit "Delete"%>
+		<br><br>
+		<%end%>
+	<%end%>

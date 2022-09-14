@@ -1,0 +1,10 @@
+
+
+<%= form_with url: '/score/relay', method: 'post', data: {turbo: false} do |form| %>
+<%= "You want to change name and score of #{@subject.subject_name} to    "%> <br>
+<%= form.hidden_field :index,value:@subject.id%>
+<%= form.text_field :"n_name" ,value:@subject.subject_name%>
+<%= form.number_field :"n_score" ,value:@subject.score%>
+<%= form.submit "Confirm Edit"%>
+<%= form.submit "Back"%>
+<%end%>

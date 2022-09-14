@@ -1,0 +1,21 @@
+<h1> Result </h1>
+<% i=0 %>
+<% score=0 %>
+<% maxindex = -1000 %>
+<% cmax = 0 %>
+<% loop do %>
+	<% i=i+1 %>
+	<% score = score + @score[i-1].to_i %>
+	<%
+		if @score[i-1].to_i > cmax
+			cmax = @score[i-1].to_i
+			maxindex = i-1
+		end
+	%>
+	<% break if i>@subn.to_i-1 %>
+<% end %>
+<%= "Total Score : "%>
+<%= score %>
+<br><br>
+<%= "Subject with most score : "%>
+<%= @subj[maxindex] %>

@@ -1,0 +1,56 @@
+<h1>Main#test</h1>
+<p>Find me in app/views/main/test.html.erb</p>
+
+<%= form_with url: '/main/test', method: 'post', data: {turbo: false} do |form| %>
+	<%= form.hidden_field :subjectno,value:@subn%>
+	<%= form.hidden_field :recur,value:0%>
+	<% i=0 %>
+	
+	<%
+		if @subj == nil
+			@subj = []
+		end 
+		if @score == nil
+			@score = []
+		end
+	%>
+	<%loop do%>
+		<% j=0%>
+		<% k=0%>
+		<%
+			if @subj[i] == nil || @subj[i] == ""
+				@subj[i] = ""
+				k = 1
+			end
+			if @score[i] == nil || @score[i] == ""
+				@score[i] = ""
+				j = 1
+			end
+		%>
+		<% i=i+1%>
+		<%= form.label :query, "Subject " %><%=i%><%=" :"%>
+		  <%= form.text_field :"subject[]" ,value:@subj[i-1]%>
+		  <%=
+		  	if @recur != nil && k==1
+		  		"subject is empty"
+		  	end
+			%>
+		  <%= form.label :query, "Score:" %>
+		  
+		  <%= form.number_field :"Score[]" ,value:@score[i-1]%>
+		  <%=
+		  	if @recur != nil && j==1
+		  		"Score is empty"
+		  	end
+			%>
+		  <br><br>
+
+		<% break if i>@subn.to_i-1 %>
+
+	<% end %>
+  <%= form.submit "Submit" %>
+
+
+
+
+<% end %>
